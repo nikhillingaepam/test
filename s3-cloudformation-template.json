@@ -1,0 +1,42 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "AWS CloudFormation Template to create an S3 bucket",
+
+  "Parameters": {
+    "BucketName": {
+      "Type": "String",
+      "Description": "Name of the S3 bucket to create"
+    }
+  },
+
+  "Resources": {
+    "S3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": { "Ref": "BucketName" },
+        "AccessControl": "Private",  // Adjust as needed
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": { "Ref": "BucketName" }
+          }
+        ]
+      }
+    }
+  },
+
+  "Outputs": {
+    "BucketName": {
+      "Description": "Name of the created S3 bucket",
+      "Value": { "Ref": "BucketName" }
+    },
+    "BucketArn": {
+      "Description": "ARN of the created S3 bucket",
+      "Value": { "Fn::GetAtt": ["S3Bucket", "Arn"] }
+    },
+    "BucketWebsiteURL": {
+      "Description": "Website URL of the S3 bucket (if configured)",
+      "Value": { "Fn::GetAtt": ["S3Bucket", "WebsiteURL"] }
+    }
+  }
+}

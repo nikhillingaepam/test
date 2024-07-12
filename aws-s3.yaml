@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: 'aws-s3-resource'
+  title: 'create s3 resource'
+  description: 'create s3 resource'
+spec:
+  type: AWS
+  lifecycle: experimental
+  owner: user:guest
